@@ -1,0 +1,64 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">
+		</div>
+		<div class="span4">
+			<%=image_tag "http://25.media.tumblr.com/bf35b28abd45e3baf8e947ebdec97249/tumblr_mitk66qY6d1rjgyb2o1_500.jpg"%>
+			
+		</div>
+		<div class="span4">
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+		</div>
+		<div class="span4">
+			<%= form_tag("/reset", method: "post") do %>
+			  <%= phone_field_tag(:phone) %>
+			  <%= submit_tag "Submit", :class => 'btn btn-primary' %>
+			<% end %>		
+		</div>
+		<div class="span4">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+(function () {
+ var initial = new Array();
+
+ function handleOrientation(event) {
+   if (initial.length == 2) {
+     var beta     = event.beta;
+     var gamma    = event.gamma;
+     var betaDiff = Math.abs(Math.abs(beta) - Math.abs(initial[0]));
+     var gammaDiff = Math.abs(Math.abs(gamma) - Math.abs(initial[1]));
+     if ((betaDiff >= 6) || (gammaDiff >= 6)) {
+       //trigger twilio
+       //trigger alarm
+       window.location.replace("http://localhost:3000/ring_alarm");
+     }
+   }
+   else {
+     initial[0] = event.beta
+     initial[1] = event.gamma;
+     console.log(initial.length);
+   }
+ }
+
+ window.addEventListener('deviceorientation', handleOrientation);
+
+ // else if (window.DeviceMotionEvent) {
+ //   window.addEventListener('devicemotion', function(event) {
+ //     console.log("device moved");
+ //   }, true);
+ // } 
+ // else {
+ //   window.addEventListener('MozOrientation', function(orientation) {
+ //     console.log("moz oriented");
+ //   }, true);
+ // }
+
+})();
+</script>

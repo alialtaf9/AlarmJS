@@ -1,0 +1,19 @@
+<%= audio_tag "minions.mp3", :autoplay => true, :loop => true%>
+
+<script type="text/javascript">
+(function () {
+	var red = true;
+	function changeColor() {
+		
+		if (red) {
+			document.body.style.background = "red";
+			red = false;	
+		}
+		else {
+			document.body.style.background = "white";
+			red = true;
+		}
+	}
+	setInterval(changeColor, 420);
+})();
+</script>
